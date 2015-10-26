@@ -1,0 +1,9 @@
+https://home.nest.com/login/oauth2?client_id=ed979319-4927-4f50-b0bc-f2f02756585f&state=1
+
+PIN = LDN8KV4G
+
+curl --request POST "https://api.home.nest.com/oauth2/access_token?code=LDN8KV4G&client_id=ed979319-4927-4f50-b0bc-f2f02756585f&client_secret=4FQlFj6Ij1eHH4UjkTF9Axh6d&grant_type=authorization_code"
+
+{"access_token":"c.Q2TYtjcqbU1Ypr9J5I2dQEsmXHaHFbiFIMrqh67jrMlsbiNEIdvMIEHMAAazWhh49YuCEzk1VqE4gAsoasOjgpJLl8xo2KhadllPeJZNlNttb0t61SXgNWAvZOQLupxXDjpWz3MxEj8INiPU","expires_in":315360000}
+
+curl -L "https://developer-api.nest.com/devices.json?auth=c.Q2TYtjcqbU1Ypr9J5I2dQEsmXHaHFbiFIMrqh67jrMlsbiNEIdvMIEHMAAazWhh49YuCEzk1VqE4gAsoasOjgpJLl8xo2KhadllPeJZNlNttb0t61SXgNWAvZOQLupxXDjpWz3MxEj8INiPU"
