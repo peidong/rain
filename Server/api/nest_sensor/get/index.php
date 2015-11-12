@@ -20,6 +20,37 @@
 
     deliver_response(200, "The nest sensors' data has been got", $response);
 
+    function process_sensor_data(){
+        if ($smoke_alarm_state == "ok" && $co_alarm_state == "ok"){
+            //stop watering
+            send_water_command(0);
+        }else if ($smoke_alarm_state == "emergency" || $co_alarm_state == "emergency"){
+            //water 1min
+            send_water_command(1);
+        }else{
+            //water 5min
+            send_water_command(5);
+        }
+    }
+            
+    function send_water_command($water_time_min){
+        $device_id = "";
+        $water_zone_number = 1;
+        $url = "";
+        $headers = array("Content-type: application/json;charset='utf-8'", "Accept: application/json", "Cache-Control: no-cache", "Pragma: no-cache",);
+        $ch = curl_init();
+        $timeout = 30;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "devid=$device_id&zone=$water_zone_number&watertime=$water_time_min");
+        $server_output = curl_exec($ch);
+        curl_close($ch);
+    }
+
     function get_nest_sensor_data(){
         $url = "https://developer-api.nest.com/devices.json?auth=c.T1yBuMT940gRUCMCrdNgyw9f3D8jPDcDrq2JunxVxbZ9qsJk9V6Ji8bcgTRocZvh3wvDaG8TDbQ0eR5yRUuXLMyqlNheArebuhNLv0tknBjzcvVVdPmHqFFvmE5z0GrBOJV4hkCvMksLHwCA";
         $headers = array("Content-type: application/json;charset='utf-8'", "Accept: application/json", "Cache-Control: no-cache", "Pragma: no-cache",);
