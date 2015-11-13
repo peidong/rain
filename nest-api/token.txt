@@ -7,3 +7,18 @@ curl --request POST "https://api.home.nest.com/oauth2/access_token?code=N3NRLBFQ
 {"access_token":"c.T1yBuMT940gRUCMCrdNgyw9f3D8jPDcDrq2JunxVxbZ9qsJk9V6Ji8bcgTRocZvh3wvDaG8TDbQ0eR5yRUuXLMyqlNheArebuhNLv0tknBjzcvVVdPmHqFFvmE5z0GrBOJV4hkCvMksLHwCA","expires_in":315360000}
 
 curl -L "https://developer-api.nest.com/devices.json?auth=c.T1yBuMT940gRUCMCrdNgyw9f3D8jPDcDrq2JunxVxbZ9qsJk9V6Ji8bcgTRocZvh3wvDaG8TDbQ0eR5yRUuXLMyqlNheArebuhNLv0tknBjzcvVVdPmHqFFvmE5z0GrBOJV4hkCvMksLHwCA"
+
+
+
+
+ACCF233C8C94
+595
+
+接口
+1. http://139.162.2.26/api/rest/client/devstatus?sn=$sn_number 得到设备状态
+
+2. http://139.162.2.26/api/rest/client/getdevidbysno?sno=$sn_number 得到设备的devid
+
+3. http://139.162.2.26/api/rest/client/sendcommand?&devid=595&command=RainOnce&params=param:3;type:1;whichvalve:1,2;howlong:1 
+
+http://www.rainconn.com/api/rest/client/sendcommand?&devid=595&command=RainOnce&params=param:3;type:1;whichvalve:1;howlong:1&srcip=www.rainconn.com&srctype=2
