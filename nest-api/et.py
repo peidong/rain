@@ -84,20 +84,20 @@ def asceDaily(year, month, day, fTMinC, fTMaxC, fU2z, fU2m, fLat, fElevation, fR
         fRa = 24.0 / math.pi * 4.92 * fDr * (fOmegaS * math.sin(fLatRadian) * math.sin(fDeclin) + math.cos(fLatRadian) * math.cos(fDeclin) * math.sin(fOmegaS) );#Eq.21
         fRSo = 0.0;
         if fElevation != None:
-                fRSo = (0.75 + 2.0 * fElevation / 100000.0) * fRa;#Eq.19
+            fRSo = (0.75 + 2.0 * fElevation / 100000.0) * fRa;#Eq.19
         else:
-                fRSo = 0.75 * fRa;#dumb aproximation
+            fRSo = 0.75 * fRa;#dumb aproximation
 
         #if fRs is not valid, calculate it from temperatures
         if fKrs == None:
-                fKrs = 0.17;
+            fKrs = 0.17;
 
         if fRs == None:
-                fRs = fKrs * math.sqrt(fTMaxC - fTMinC) * fRa;#eq 4/appendix.pdf
-                if fRs < 0:
-                        fRs = 0;
-                if fRs > fRSo:
-                        fRs = fRSo;
+            fRs = fKrs * math.sqrt(fTMaxC - fTMinC) * fRa;#eq 4/appendix.pdf
+            if fRs < 0:
+                fRs = 0;
+            if fRs > fRSo:
+                fRs = fRSo;
                 #fRs = fRSo;//0.75*Ra (Eq. E.2/appendix)
 
         if fRSo != 0:
@@ -123,7 +123,7 @@ def asceDaily(year, month, day, fTMinC, fTMaxC, fU2z, fU2m, fLat, fElevation, fR
 
         #///////////Pressure//////////////////
         if fPressure == None:
-                fPressure = 101.3 * pow((293 - 0.0065 * fElevation) / 293, 5.25);#Eq.3
+            fPressure = 101.3 * pow((293 - 0.0065 * fElevation) / 293, 5.25);#Eq.3
         PSYCON = 0.000665;
         fPsyCon = PSYCON * fPressure;#Eq.4
         print("->Pressure:", fPressure);
@@ -140,7 +140,7 @@ def asceDaily(year, month, day, fTMinC, fTMaxC, fU2z, fU2m, fLat, fElevation, fR
         fETrs = fETrs / (fDelta + fPsyCon * (1 + fCd * fU2) );
 
         if fETos < 0.0: # don't allow negative ET0
-                fETos = 0.0
+            fETos = 0.0
 
         print("->ETos:", fETos, "ETrs:", fETrs);
 
