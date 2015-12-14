@@ -36,8 +36,9 @@ import MySQLdb
     # print row[3]
 
 while True:
-    results_raw = requests.get("http://fryer.ee.ucla.edu/nest/api/nest_sensor/get/?sn_number=ACCF233C8C94")
+    # results_raw = requests.get("http://fryer.ee.ucla.edu/nest/api/nest_sensor/get/?sn_number=ACCF233C8C94")
+    results_raw = requests.get("http://fryer.ee.ucla.edu/nest/api/nest_sensor/get/?sn_number=ACCF233C85F8")
     results_json = results_raw.text
     results = yaml.safe_load(results_json)
     print(results)
-    time.sleep(10)
+    time.sleep(5)
